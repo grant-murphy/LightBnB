@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS properties CASCADE;
 DROP TABLE IF EXISTS reservations CASCADE;
 DROP TABLE IF EXISTS property_reviews CASCADE;
 
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name TEXT,
@@ -12,7 +11,7 @@ CREATE TABLE users (
 
 CREATE TABLE properties (
   id SERIAL PRIMARY KEY NOT NULL,
-  guest_id INTEGER NOT NULL REFERENCES users(id) on DELETE CASCADE,
+  owner_id INTEGER NOT NULL REFERENCES users(id) on DELETE CASCADE,
   title TEXT NOT NULL,
   description TEXT NOT NULL,
   thumbnail_photo_url TEXT NOT NULL,
@@ -22,10 +21,11 @@ CREATE TABLE properties (
   number_of_bathrooms INTEGER NOT NULL,
   number_of_bedrooms INTEGER NOT NULL,
   country TEXT NOT NULL,
-  street TEXT NOT NULL,
+  street_number INTEGER NOT NULL,
+  street_name TEXT NOT NULL,
   city TEXT NOT NULL,
   provence TEXT NOT NULL,
-  post_code TEXT NOT NULL,
+  postal_code TEXT NOT NULL,
   active BOOLEAN NOT NULL
 );
 
